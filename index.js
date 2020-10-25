@@ -1,7 +1,6 @@
-var args = process.argv.slice(2)
 var util  = require('util'),
     spawn = require('child_process').spawn,
-    ls    = spawn('entrypoint.sh', args); // the second arg is the command 
+    ls    = spawn('./entrypoint.sh'); // the second arg is the command 
                                           // options
 
 ls.stdout.on('data', function (data) {    // register one or more handlers
