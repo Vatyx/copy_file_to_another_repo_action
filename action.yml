@@ -24,7 +24,7 @@ inputs:
     required: false
 runs:
   using: 'node12'
-  image: 'index.js'
+  main: 'index.js'
   args:
     - ${{ inputs.source-file }}
     - ${{ inputs.destination-repo }}
