@@ -4,4 +4,14 @@ var util  = require('util'),
 execSync("git config --global user.email " + process.env.INPUT_USER_EMAIL);
 execSync("git config --global user.name " + process.env.INPUT_USER_NAME);
 console.log("this happened");
-//execSync("git clone --single-branch --branch " + process.env.INPUT_DESTINATION_BRANCH + " \"https://" + process.env.API_TOKEN_GITHUB + "@github.com/$INPUT_DESTINATION_REPO.git" "$CLONE_DIR"
+
+let clone = `git clone --single-branch --branch ${process.env.INPUT_DESTINATION_BRANCH} "https://${process.env.API_TOKEN_GITHUB}@github.com/${process.env.INPUT_DESTINATION_REPO}.git" "${process.env.CLONE_DIR}"`
+execSync(clone);
+
+execSync(`mkdir -p ${process.env.CLONE_DIR}/${process.env.INPUT_DESTINATION_FOLDER}`)
+execSync(`cp -R ${process.env.INPUT_SOURCE_FILE} "${process.env.CLONE_DIR}/${process.env.INPUT_DESTINATION_FOLDER}"`)
+
+execSync(`git add .`)
+execSync(`git commit --message "Update from https://github.com/${process.env.GITHUB_REPOSITORY}/commit/${process.env.GITHUB_SHA}"`)
+execSync(`echo "Pushing git commit"`)
+execSync(`git push -u origin HEAD:${process.env.OUTPUT_BRANCH}`)
