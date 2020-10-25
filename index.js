@@ -7,7 +7,7 @@ console.log("this happened");
 
 let temp = execSync(`mktemp -d`).toString();
 
-let clone = `git clone "https://${process.env.API_TOKEN_GITHUB}@github.com/${process.env.INPUT_DESTINATION_REPO}.git"`
+let clone = `git clone "https://${process.env.GITHUB_TOKEN}@github.com/${process.env.INPUT_DESTINATION_REPO}.git"`
 execSync(clone);
 
 //execSync(`mkdir -p .//${process.env.INPUT_DESTINATION_FOLDER}`)
