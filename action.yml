@@ -23,8 +23,8 @@ inputs:
     description: 'Destination branch to create for this commit'
     required: false
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'node12'
+  image: 'index.js'
   args:
     - ${{ inputs.source-file }}
     - ${{ inputs.destination-repo }}
