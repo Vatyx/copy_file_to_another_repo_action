@@ -5,7 +5,9 @@ execSync("git config --global user.email " + process.env.INPUT_USER_EMAIL);
 execSync("git config --global user.name " + process.env.INPUT_USER_NAME);
 console.log("this happened");
 
-let clone = `git clone --single-branch --branch ${process.env.INPUT_DESTINATION_BRANCH} "https://${process.env.API_TOKEN_GITHUB}@github.com/${process.env.INPUT_DESTINATION_REPO}.git" "${process.env.CLONE_DIR}"`
+let temp = execSync(`mktemp -d`).toString();
+
+let clone = `git clone --single-branch --branch ${process.env.INPUT_DESTINATION_BRANCH} "https://${process.env.API_TOKEN_GITHUB}@github.com/${process.env.INPUT_DESTINATION_REPO}.git" "${temp}"`
 execSync(clone);
 
 execSync(`mkdir -p ${process.env.CLONE_DIR}/${process.env.INPUT_DESTINATION_FOLDER}`)
