@@ -25,13 +25,6 @@ inputs:
 runs:
   using: 'node12'
   main: 'index.js'
-  args:
-    - ${{ inputs.source-file }}
-    - ${{ inputs.destination-repo }}
-    - ${{ inputs.destination-folder }}
-    - ${{ inputs.user-email }}
-    - ${{ inputs.destination-branch }}
-    - ${{ inputs.destination-branch-create }}
 branding:
   icon: 'git-commit'
   color: 'green'
