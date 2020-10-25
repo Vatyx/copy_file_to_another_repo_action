@@ -1,16 +1,7 @@
 var util  = require('util'),
-    spawn = require('child_process').spawn,
-    ls    = spawn('./entrypoint.sh'); // the second arg is the command 
-                                          // options
+    execSync = require('child_process').execSync;
 
-ls.stdout.on('data', function (data) {    // register one or more handlers
-  console.log('stdout: ' + data);
-});
-
-ls.stderr.on('data', function (data) {
-  console.log('stderr: ' + data);
-});
-
-ls.on('exit', function (code) {
-  console.log('child process exited with code ' + code);
-});
+execSync("git config --global user.email " + process.env.INPUT_USER_EMAIL);
+execSync("git config --global user.name " + process.env.INPUT_USER_NAME);
+console.log("this happened");
+//execSync("git clone --single-branch --branch " + process.env.INPUT_DESTINATION_BRANCH + " \"https://" + process.env.API_TOKEN_GITHUB + "@github.com/$INPUT_DESTINATION_REPO.git" "$CLONE_DIR"
